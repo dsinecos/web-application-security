@@ -52,3 +52,13 @@
 
 2. Don't add `multer` (NPM module to upload files) as a global middleware since a malicious user could upload files to a route that you didn't anticipate. Use `multer` only on routes where you are handling the uploaded files
 
+### Code Execution Vulnerability
+
+Allow an attacker to execute OS commands and can be used to gain reverse shell access
+
+**Mitigation**
+
+1. Avoid allowing users to run any sort of code on your server
+   
+   In Node.js try to avoid functions such as `eval` etc that allow a user to run OS code on the server
+
