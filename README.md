@@ -62,3 +62,27 @@ Allow an attacker to execute OS commands and can be used to gain reverse shell a
    
    In Node.js try to avoid functions such as `eval` etc that allow a user to run OS code on the server
 
+### File Inclusion Vulnerability
+
+Allows attacker to read any file on the server. This allows access to configuration files and files storing credentials
+
+**Potential Attacks**
+
+This vulnerability can be escalated by an attacker to inject code into a readable file (eg. log file) and then have the code executed (I was able to find examples for PHP but not for Express/ Node.js where File Inclusion vulnerability can be escalated to execute code on server side)
+
+**Mitigation**
+
+When using Express, ensure to filter file path input when using the `sendFile` method. It is recommended to use `express.static` middleware as it filters for file path injection.
+
+Refer [Github - local-file-inclusion](https://github.com/dsinecos/local-file-inclusion) for a demonstration
+
+**Remote File Inclusion**
+
+Is similar to Local File Inclusion except the exploited files are accessed on a different machine/ server within the same network as the target website
+
+
+## References
+
+[Learn Website Hacking / Penetration Testing From Scratch](https://www.udemy.com/course/learn-website-hacking-penetration-testing-from-scratch/)
+
+[Node.js Security Roadmap](https://github.com/google/node-sec-roadmap)
